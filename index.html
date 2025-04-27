@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>שלי לוי - מורה ליוגה</title>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -20,34 +24,46 @@
 
         header {
             background-color: #fff;
-            padding: 20px;
+            padding: 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         nav {
-            background-color: #9B8BB4;
-            padding: 15px 40px;
+            background-color: rgba(155, 139, 180, 0.85);
+            padding: 8px 120px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 100%;
+            margin: 0 auto;
+            backdrop-filter: blur(5px);
         }
 
         .nav-links {
             display: flex;
             justify-content: flex-start;
-            gap: 0;
-            padding-right: 15px;
+            gap: 15px;
+        }
+
+        .logo {
+            position: relative;
+            display: flex;
+            align-items: center;
         }
 
         .logo img {
-            height: 50px;
+            height: 45px;
             width: auto;
+            object-fit: contain;
+            filter: brightness(1.1);
+            position: relative;
+            top: 1px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 15px;
             margin: 0 12px;
             transition: color 0.3s ease;
         }
@@ -57,24 +73,107 @@
         }
 
         .hero {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b');
-            background-size: cover;
-            background-position: center;
-            height: 60vh;
+            position: relative;
+            height: 85vh;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             text-align: center;
+            overflow: hidden;
+        }
+
+        .slide-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            padding: 15px;
+            cursor: pointer;
+            border: none;
+            font-size: 24px;
+            transition: background 0.3s;
+            border-radius: 5px;
+        }
+
+        .slide-nav:hover {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .prev-slide {
+            left: 20px;
+        }
+
+        .next-slide {
+            right: 20px;
+        }
+
+        .slide-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 2;
+        }
+
+        .slide-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .slide-dot.active {
+            background: white;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 3.5em;
-            margin-bottom: 20px;
+            font-size: 4.2em;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero p {
-            font-size: 1.5em;
+            font-size: 1.8em;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
 
         section {
@@ -157,16 +256,24 @@
                 <a href="#contact">צור קשר</a>
             </div>
             <div class="logo">
-                <img src="shelly logo.png" alt="שלי לוי - לוגו">
+                <img src="logo.png" alt="שלי לוי - לוגו">
             </div>
         </nav>
     </header>
 
     <div class="hero" id="home">
-        <div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
             <h1>שלי לוי</h1>
             <p>מורה ליוגה מוסמכת</p>
         </div>
+        <button class="slide-nav prev-slide" onclick="changeSlide(-1)">❯</button>
+        <button class="slide-nav next-slide" onclick="changeSlide(1)">❮</button>
+        <div class="slide-dots"></div>
+        <div class="hero-slide active" style="background-image: url('pic 4.png')"></div>
+        <div class="hero-slide" style="background-image: url('pic 1.png')"></div>
+        <div class="hero-slide" style="background-image: url('pic 2.png')"></div>
+        <div class="hero-slide" style="background-image: url('pic 3.png')"></div>
     </div>
 
     <section id="about">
@@ -218,5 +325,95 @@
         <p>© 2024 כל הזכויות שמורות לשלי לוי</p>
         <p>טלפון: 050-1234567 | אימייל: shelly@yoga.com</p>
     </footer>
+
+    <script>
+        function scrollToSection(sectionId) {
+            event.preventDefault();
+            const section = document.getElementById(sectionId);
+            const headerHeight = document.querySelector('header').offsetHeight;
+            const targetPosition = section.offsetTop - headerHeight;
+            
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            const duration = 500;
+            let start = null;
+
+            function animation(currentTime) {
+                if (start === null) start = currentTime;
+                const timeElapsed = currentTime - start;
+                const progress = Math.min(timeElapsed / duration, 1);
+                
+                const easeInOutQuad = t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                
+                window.scrollTo(0, startPosition + distance * easeInOutQuad(progress));
+                
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                }
+            }
+            
+            requestAnimationFrame(animation);
+        }
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const dotsContainer = document.querySelector('.slide-dots');
+        let slideInterval;
+
+        // יצירת הנקודות
+        function createDots() {
+            for (let i = 0; i < slides.length; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToSlide(i);
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        // עדכון המצב הפעיל
+        function updateActiveState() {
+            // עדכון שקופיות
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide].classList.add('active');
+            
+            // עדכון נקודות
+            const dots = document.querySelectorAll('.slide-dot');
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentSlide].classList.add('active');
+        }
+
+        // מעבר לשקופית ספציפית
+        function goToSlide(index) {
+            currentSlide = index;
+            updateActiveState();
+            resetInterval();
+        }
+
+        // שינוי שקופית (קדימה/אחורה)
+        function changeSlide(direction) {
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            updateActiveState();
+            resetInterval();
+        }
+
+        // איפוס הטיימר האוטומטי
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startSlideshow();
+        }
+
+        // התחלת המצגת האוטומטית
+        function startSlideshow() {
+            slideInterval = setInterval(() => {
+                changeSlide(1);
+            }, 4000); // 4 שניות
+        }
+
+        // אתחול בטעינת הדף
+        window.addEventListener('load', () => {
+            createDots();
+            startSlideshow();
+        });
+    </script>
 </body>
 </html> 
