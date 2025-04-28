@@ -20,16 +20,21 @@
             background-color: #f5f5f5;
             color: #333;
             line-height: 1.6;
+            padding-top: 61px; /* Height of the header */
         }
 
         header {
             background-color: #fff;
             padding: 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
 
         nav {
-            background-color: rgba(155, 139, 180, 0.85);
+            background-color: rgb(155, 139, 180);
             padding: 8px 120px;
             display: flex;
             justify-content: space-between;
@@ -187,6 +192,11 @@
             text-align: center;
             font-size: 2em;
             color: #333;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #9B8BB4;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         #about {
@@ -229,21 +239,51 @@
         .classes {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 30px;
             margin-top: 30px;
         }
 
         .class-card {
             background-color: white;
-            border-radius: 10px;
-            padding: 20px;
+            border-radius: 15px;
+            padding: 30px;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .class-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(155, 139, 180, 0.2);
+        }
+
+        .class-icon {
+            font-size: 2.5em;
+            color: #9B8BB4;
+            margin-bottom: 20px;
         }
 
         .class-card h3 {
             margin-bottom: 15px;
             color: #333;
+            font-size: 1.5em;
+        }
+
+        .class-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .class-time {
+            color: #9B8BB4;
+            font-weight: 500;
+            font-size: 1.1em;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
         }
 
         .contact-form {
@@ -336,19 +376,22 @@
         <h2>השיעורים שלי</h2>
         <div class="classes">
             <div class="class-card">
+                <div class="class-icon">🧘‍♀️</div>
                 <h3>יוגה למתחילים</h3>
                 <p>שיעור מושלם למתחילים המעוניינים להכיר את עולם היוגה</p>
-                <p>ימי ראשון ורביעי | 18:00-19:15</p>
+                <div class="class-time">ימי ראשון ורביעי | 18:00-19:15</div>
             </div>
             <div class="class-card">
+                <div class="class-icon">🌊</div>
                 <h3>ויניאסה פלואו</h3>
                 <p>שיעור דינמי המשלב תנועה ונשימה</p>
-                <p>ימי שני וחמישי | 19:30-20:45</p>
+                <div class="class-time">ימי שני וחמישי | 19:30-20:45</div>
             </div>
             <div class="class-card">
+                <div class="class-icon">✨</div>
                 <h3>יוגה תרפיה</h3>
                 <p>שיעור המתמקד בריפוי ושיקום</p>
-                <p>ימי שישי | 09:00-10:15</p>
+                <div class="class-time">ימי שישי | 09:00-10:15</div>
             </div>
         </div>
     </section>
