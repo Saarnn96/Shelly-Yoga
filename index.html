@@ -171,14 +171,39 @@
         }
 
         .hero h1 {
-            font-size: 4.2em;
-            margin-bottom: 25px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 3.5em;
+            margin-bottom: 20px;
         }
 
         .hero p {
-            font-size: 1.8em;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background-color: #9B8BB4;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            width: 200px;
+            text-align: center;
+        }
+
+        .hero-cta:hover {
+            background-color: #7A6B93;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(155, 139, 180, 0.2);
+        }
+
+        .hero-cta:active {
+            transform: scale(0.98);
         }
 
         section {
@@ -290,32 +315,74 @@
             max-width: 600px;
             margin: 0 auto;
             background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .contact-form input,
         .contact-form textarea {
             width: 100%;
-            padding: 10px;
+            padding: 15px;
             margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            text-align: right;
+            direction: rtl;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #9B8BB4;
+            box-shadow: 0 0 0 3px rgba(155, 139, 180, 0.1);
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #999;
         }
 
         .contact-form button {
             background-color: #9B8BB4;
             color: white;
-            padding: 10px 20px;
+            padding: 15px 30px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 1.1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
         }
 
         .contact-form button:hover {
-            background-color: #B8A7D3;
+            background-color: #7A6B93;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(155, 139, 180, 0.2);
+        }
+
+        .contact-form button:active {
+            transform: scale(0.98);
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .contact-info p {
+            color: #666;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .contact-info i {
+            color: #9B8BB4;
+            margin-right: 8px;
         }
 
         footer {
@@ -347,6 +414,7 @@
         <div class="hero-content">
             <h1>שלי לוי</h1>
             <p>מורה ליוגה מוסמכת</p>
+            <a href="#contact" class="hero-cta">קבע שיעור</a>
         </div>
         <button class="slide-nav prev-slide" onclick="changeSlide(-1)">❯</button>
         <button class="slide-nav next-slide" onclick="changeSlide(1)">❮</button>
@@ -376,19 +444,19 @@
         <h2>השיעורים שלי</h2>
         <div class="classes">
             <div class="class-card">
-                <div class="class-icon">🧘‍♀️</div>
+                <div class="class-icon">🌸</div>
                 <h3>יוגה למתחילים</h3>
                 <p>שיעור מושלם למתחילים המעוניינים להכיר את עולם היוגה</p>
                 <div class="class-time">ימי ראשון ורביעי | 18:00-19:15</div>
             </div>
             <div class="class-card">
-                <div class="class-icon">🌊</div>
+                <div class="class-icon">🌿</div>
                 <h3>ויניאסה פלואו</h3>
                 <p>שיעור דינמי המשלב תנועה ונשימה</p>
                 <div class="class-time">ימי שני וחמישי | 19:30-20:45</div>
             </div>
             <div class="class-card">
-                <div class="class-icon">✨</div>
+                <div class="class-icon">🌅</div>
                 <h3>יוגה תרפיה</h3>
                 <p>שיעור המתמקד בריפוי ושיקום</p>
                 <div class="class-time">ימי שישי | 09:00-10:15</div>
@@ -398,6 +466,9 @@
 
     <section id="contact">
         <h2>צור קשר</h2>
+        <div class="contact-info">
+            <p>מוזמנים ליצור איתי קשר בכל שאלה או לקביעת שיעור</p>
+        </div>
         <div class="contact-form">
             <form>
                 <input type="text" placeholder="שם מלא" required>
