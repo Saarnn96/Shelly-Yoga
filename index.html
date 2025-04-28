@@ -192,8 +192,6 @@
             font-weight: 500;
             transition: all 0.3s ease;
             cursor: pointer;
-            width: 200px;
-            text-align: center;
         }
 
         .hero-cta:hover {
@@ -277,11 +275,41 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: auto;
         }
 
         .class-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(155, 139, 180, 0.2);
+        }
+
+        .class-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .class-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background-color: #f9f9f9;
+            margin: 0 -30px;
+            padding: 0 30px;
+        }
+
+        .class-details.active {
+            max-height: 200px;
+            padding: 20px 30px;
+            margin-top: 20px;
+        }
+
+        .class-details p {
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
         }
 
         .class-icon {
@@ -300,6 +328,7 @@
             color: #666;
             line-height: 1.6;
             margin-bottom: 15px;
+            flex-grow: 1;
         }
 
         .class-time {
@@ -309,6 +338,32 @@
             margin-top: 20px;
             padding-top: 15px;
             border-top: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        .class-more {
+            display: inline-block;
+            background-color: #9B8BB4;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .class-more:hover {
+            background-color: #7A6B93;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(155, 139, 180, 0.2);
+        }
+
+        .class-more:active {
+            transform: scale(0.98);
         }
 
         .contact-form {
@@ -444,22 +499,40 @@
         <h2>השיעורים שלי</h2>
         <div class="classes">
             <div class="class-card">
-                <div class="class-icon">🌸</div>
-                <h3>יוגה למתחילים</h3>
-                <p>שיעור מושלם למתחילים המעוניינים להכיר את עולם היוגה</p>
-                <div class="class-time">ימי ראשון ורביעי | 18:00-19:15</div>
+                <div class="class-content">
+                    <div class="class-icon">🌸</div>
+                    <h3>יוגה למתחילים</h3>
+                    <p>שיעור מושלם למתחילים המעוניינים להכיר את עולם היוגה</p>
+                    <div class="class-time">ימי ראשון ורביעי | 18:00-19:15</div>
+                    <button class="class-more" onclick="toggleDetails(this)">למידע נוסף</button>
+                    <div class="class-details">
+                        <p>בשיעור זה נלמד את היסודות הבסיסיים של היוגה, כולל תנוחות בסיסיות, טכניקות נשימה, ומדיטציה. השיעור מתאים במיוחד למתחילים ומשלב הסברים מפורטים ותשומת לב אישית לכל מתרגל.</p>
+                    </div>
+                </div>
             </div>
             <div class="class-card">
-                <div class="class-icon">🌿</div>
-                <h3>ויניאסה פלואו</h3>
-                <p>שיעור דינמי המשלב תנועה ונשימה</p>
-                <div class="class-time">ימי שני וחמישי | 19:30-20:45</div>
+                <div class="class-content">
+                    <div class="class-icon">🌿</div>
+                    <h3>ויניאסה פלואו</h3>
+                    <p>שיעור דינמי המשלב תנועה ונשימה</p>
+                    <div class="class-time">ימי שני וחמישי | 19:30-20:45</div>
+                    <button class="class-more" onclick="toggleDetails(this)">למידע נוסף</button>
+                    <div class="class-details">
+                        <p>שיעור דינמי המשלב תנועה זורמת עם נשימה מודעת. נלמד רצפי תנועה המחזקים את הגוף, מגמישים אותו ומשפרים את הקואורדינציה. מתאים למתרגלים עם ניסיון בסיסי ביוגה.</p>
+                    </div>
+                </div>
             </div>
             <div class="class-card">
-                <div class="class-icon">🌅</div>
-                <h3>יוגה תרפיה</h3>
-                <p>שיעור המתמקד בריפוי ושיקום</p>
-                <div class="class-time">ימי שישי | 09:00-10:15</div>
+                <div class="class-content">
+                    <div class="class-icon">🌅</div>
+                    <h3>יוגה תרפיה</h3>
+                    <p>שיעור המתמקד בריפוי ושיקום</p>
+                    <div class="class-time">ימי שישי | 09:00-10:15</div>
+                    <button class="class-more" onclick="toggleDetails(this)">למידע נוסף</button>
+                    <div class="class-details">
+                        <p>שיעור טיפולי המותאם אישית לצרכים של כל מתרגל. מתמקד בשיקום פציעות, הקלה על כאבים, ושיפור היציבה. כולל תרגילים עדינים ומותאמים אישית.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -573,6 +646,23 @@
             createDots();
             startSlideshow();
         });
+
+        function toggleDetails(button) {
+            const details = button.nextElementSibling;
+            const isActive = details.classList.contains('active');
+            
+            // סגור את כל התיבות הפתוחות האחרות
+            document.querySelectorAll('.class-details.active').forEach(el => {
+                if (el !== details) {
+                    el.classList.remove('active');
+                    el.previousElementSibling.textContent = 'למידע נוסף';
+                }
+            });
+
+            // החלף את מצב התיבה הנוכחית
+            details.classList.toggle('active');
+            button.textContent = isActive ? 'למידע נוסף' : 'סגור';
+        }
     </script>
 </body>
 </html> 
